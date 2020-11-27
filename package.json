@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "Adds pull request environment variables to Vercel builds",
   "bin": {
-    "vercel-is-pull-request": "source ./cmd.sh"
+    "vercel-is-pull-request": "./cmd.sh"
   },
   "repository": {
     "type": "git",

@@ -18,7 +18,7 @@ npm install vercel-is-pull-request
 ```
 
 
-Then, update your install command to include the command `npx vercel-is-pull-request`.
+Then, update your install command to include the command `source npx vercel-is-pull-request`.
 
 ![Screenshot of updating vercel install command to include vercel-is-pull-request](./install-command.png)
 
