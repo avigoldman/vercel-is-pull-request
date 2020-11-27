@@ -2,7 +2,7 @@
 
 const { graphql } = require("@octokit/graphql");
 const meow = require("meow");
-const package = require("./package.json");
+const pkg = require("./package.json");
 
 const cli = meow(
   `
@@ -87,7 +87,7 @@ graphql(
   `,
   {
     headers: {
-      "user-agent": `${package.name} v${package.version}`,
+      "user-agent": `${pkg.name} v${pkg.version}`,
       ...(cli.flags.auth ? { authorization: `token ${cli.flags.auth}` } : {}),
     },
   }
