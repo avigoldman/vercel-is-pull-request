@@ -47,14 +47,7 @@ const {
   VERCEL_GIT_REPO_OWNER,
   VERCEL_GIT_REPO_SLUG,
   VERCEL_GIT_COMMIT_REF,
-} = {
-  VERCEL: true,
-  VERCEL_ENV: 'preview',
-  VERCEL_GIT_PROVIDER: 'github',
-  VERCEL_GIT_REPO_OWNER: 'avigoldman',
-  VERCEL_GIT_REPO_SLUG: 'parcel',
-  VERCEL_GIT_COMMIT_REF: 'main-pr'
-};
+} = process.env;
 
 if (!VERCEL) {
   exit("did not detect a Vercel build. Exiting...");
@@ -78,7 +71,9 @@ graphql(
         head:${VERCEL_GIT_COMMIT_REF}
         type:pr
         state:open
-      `.split('\n').join(' ')}", type:ISSUE, first:100) {
+      `
+        .split("\n")
+        .join(" ")}", type:ISSUE, first:100) {
         edges {
           node {
             ...on PullRequest{
@@ -92,20 +87,22 @@ graphql(
   `,
   {
     headers: {
-      'user-agent': `${package.name} v${package.version}`,
-      ...(cli.flags.auth ? { authorization: `token ${cli.flags.auth}` } : {})
+      "user-agent": `${package.name} v${package.version}`,
+      ...(cli.flags.auth ? { authorization: `token ${cli.flags.auth}` } : {}),
     },
   }
 )
-.then((results) => {
-  const match = results.search.edges.find(({ node }) => node.headRefName === VERCEL_GIT_COMMIT_REF)
-  if (match) {
-    setEnv("VERCEL_GIT_IS_PULL_REQUEST", 1);
-    setEnv("VERCEL_GIT_PULL_REQUEST_NUMBER", match.number);
-  } else {
-    setEnv("VERCEL_GIT_IS_PULL_REQUEST", 0);    
-  }
-})
-.catch((error) => {
-  exit(`failed to query pull request. Exiting...`);
-});
+  .then((results) => {
+    const match = results.search.edges.find(
+      ({ node }) => node.headRefName === VERCEL_GIT_COMMIT_REF
+    );
+    if (match) {
+      setEnv("VERCEL_GIT_IS_PULL_REQUEST", 1);
+      setEnv("VERCEL_GIT_PULL_REQUEST_NUMBER", match.number);
+    } else {
+      setEnv("VERCEL_GIT_IS_PULL_REQUEST", 0);
+    }
+  })
+  .catch((error) => {
+    exit(`failed to query pull request. Exiting...`);
+  });

@@ -1,6 +1,7 @@
 #!/bin/sh
 
-result="$(node index.js $@)"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+result="$(node $DIR/../vercel-is-pull-request/index.js $@)"
 
 # If the result starts with a bash comment, evaluate the result.
 if [[ $result =~ ^#.* ]]
