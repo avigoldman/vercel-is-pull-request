@@ -7,7 +7,7 @@ It adds the following variables:
 | Name | Description |
 | --- | --- |
 | `VERCEL_GIT_IS_PULL_REQUEST` | An indicator that the current build has a corresponding pull request. Example: `1`. |
-| `VERCEL_GIT_PULL_REQUEST_NUMBER` | The pull request number the build corresponds to. Example: `36`. This is only set if `VERCEL_GIT_IS_PULL_REQUEST` is `true`. |
+| `VERCEL_GIT_PULL_REQUEST_NUMBER` | The pull request number the build corresponds to. Example: `36`. This is only set if `VERCEL_GIT_IS_PULL_REQUEST` is `1`. |
 
 ## Usage
 
