@@ -18,9 +18,17 @@ npm install vercel-is-pull-request
 ```
 
 
-Then, update your install command to include the command `source npx vercel-is-pull-request`.
+Then, update your install command to include the following command:
 
-If you are building a private GitHub repository add a access token through the `--auth` argument like so: `source npx vercel-is-pull-request --auth githubaccesstoken`
+```sh
+source node_modules/.bin/vercel-is-pull-request
+```
+
+If you are building a private GitHub repository add a access token through the `--auth` argument like so: 
+
+```sh
+source node_modules/.bin/vercel-is-pull-request --auth githubaccesstoken
+```
 
 ![Screenshot of updating vercel install command to include vercel-is-pull-request](./install-command.png)
 
