@@ -47,7 +47,14 @@ const {
   VERCEL_GIT_REPO_OWNER,
   VERCEL_GIT_REPO_SLUG,
   VERCEL_GIT_COMMIT_REF,
-} = process.env;
+} = {
+  VERCEL: true,
+  VERCEL_ENV: "preview",
+  VERCEL_GIT_PROVIDER: "github",
+  VERCEL_GIT_REPO_OWNER: "avigoldman",
+  VERCEL_GIT_REPO_SLUG: "parcel",
+  VERCEL_GIT_COMMIT_REF: "main-pr-2",
+};
 
 if (!VERCEL) {
   exit("did not detect a Vercel build. Exiting...");
@@ -98,7 +105,7 @@ graphql(
     );
     if (match) {
       setEnv("VERCEL_GIT_IS_PULL_REQUEST", 1);
-      setEnv("VERCEL_GIT_PULL_REQUEST_NUMBER", match.number);
+      setEnv("VERCEL_GIT_PULL_REQUEST_NUMBER", match.node.number);
     } else {
       setEnv("VERCEL_GIT_IS_PULL_REQUEST", 0);
     }
