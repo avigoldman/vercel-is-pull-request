@@ -47,14 +47,7 @@ const {
   VERCEL_GIT_REPO_OWNER,
   VERCEL_GIT_REPO_SLUG,
   VERCEL_GIT_COMMIT_REF,
-} = {
-  VERCEL: true,
-  VERCEL_ENV: "preview",
-  VERCEL_GIT_PROVIDER: "github",
-  VERCEL_GIT_REPO_OWNER: "avigoldman",
-  VERCEL_GIT_REPO_SLUG: "parcel",
-  VERCEL_GIT_COMMIT_REF: "main-pr-2",
-};
+} = process.env;
 
 if (!VERCEL) {
   exit("did not detect a Vercel build. Exiting...");
