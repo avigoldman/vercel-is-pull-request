@@ -1,6 +1,6 @@
 {
   "name": "vercel-is-pull-request",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Adds pull request environment variables to Vercel builds",
   "bin": {
     "vercel-is-pull-request": "./cmd.sh"
