@@ -1,3 +1,7 @@
+Vercel has added a [System Variable](https://vercel.com/docs/concepts/projects/environment-variables/system-environment-variables#system-environment-variables) for the pull request number. This package is now deprecated.
+
+---
+
 # vercel-is-pull-request
 
 CLI which adds pull request environment variables to Vercel builds.
